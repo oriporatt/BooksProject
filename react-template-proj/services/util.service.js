@@ -6,7 +6,8 @@ export const utilService = {
     getRandomIntInclusive,
     getDayName,
     getMonthName,
-    animateCSS
+    animateCSS,
+    getExchange
 }
 
 function makeId(length = 6) {
@@ -72,3 +73,26 @@ function animateCSS(el, animation='bounce') {
         el.addEventListener('animationend', handleAnimationEnd, { once: true })
     })
 }
+
+
+
+export function getExchange() {
+    return fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-03-06/v1/currencies/usd.json')
+        .then(response => {
+            if (response.ok) {
+            return response.json(); // Parse the response data as JSON
+            } else {
+            throw new Error('API request failed');
+            }
+        })
+        .then(data => {
+            return data.usd
+            
+        })
+        .catch(error => {
+            // Handle any errors here
+            return(0);
+        })
+
+}
+

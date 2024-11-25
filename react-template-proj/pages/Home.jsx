@@ -3,7 +3,9 @@ const { useState, useEffect } = React
 export function Home() {
     return (
         <section className="home">
-            <h2>Home Sweet Home</h2>
+            <h1> Welcome to MyBooks app...</h1>
+            <img src="../assets/img/home.jpg" alt="book-image" />
+
        </section>
     )
 }
