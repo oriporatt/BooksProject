@@ -10,7 +10,7 @@ export function BookPreview({ book }) {
             <h4> Price: {book.listPrice.amount} {book.listPrice.currencyCode}</h4>
             <h5> Price $: {book.listPrice.dollarPrice}</h5>
 
-            <img src={`../assets/img/${book.thumbnail}`} alt="book-image" />
+            <img src={`assets/img/${book.thumbnail}`} alt="book-image" />
         </article>
     )
 }
