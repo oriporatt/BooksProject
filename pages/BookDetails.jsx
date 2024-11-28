@@ -6,6 +6,8 @@ export function BookDetails() {
 
     const [book,setBook]=useState(null)
     const params = useParams()
+    const navigate = useNavigate()
+
         
     useEffect(()=>{
         loadBook(params.bookId)
@@ -16,6 +18,11 @@ export function BookDetails() {
         bookService.get(bookId)
             .then((newBook)=>setBook(newBook))
 
+    }
+
+    function onBack() {
+        navigate('/book')
+  
     }
 
     if (!book) return <div>Loading  Book..</div>
@@ -35,7 +42,7 @@ export function BookDetails() {
                     {book.categories.join(",")}
                 </h4>
                 <h4>Publish Year: {book.publishedDate}</h4>
-                <h5>Language: {book.language}</h5>
+                <h5>Language: {book.language}, Pages:  {book.pageCount}</h5>
             </div>
 
             <br></br>
@@ -47,6 +54,12 @@ export function BookDetails() {
             <h4> Price: {book.listPrice.amount} {book.listPrice.currencyCode}</h4>
             <h5> USD Price: {book.listPrice.dollarPrice} $</h5>
             <img src={book.thumbnail} alt="book-image" />
+            <br></br>
+            <section>
+                <button onClick={onBack}>Back</button>
+                <button><Link to={`/book/${book.prevBookId }`}>Prev Book</Link></button>
+                <button><Link to={`/book/${book.nextBookId }`}>Next Book</Link></button>
+            </section>
         </section>
     )
 }
