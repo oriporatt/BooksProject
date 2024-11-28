@@ -14,3 +14,8 @@
 @import "cmps/book-list.css";
 @import "cmps/book-preview.css";
 @import "cmps/app-header.css";
+
+/* Pages */
+@import "pages/about.css";
+@import "pages/home.css";
+@import "pages/book-details.css";

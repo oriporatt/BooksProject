@@ -35,6 +35,12 @@ function query(filterBy = {}) {
 
 function get(bookID) {
     return storageService.get(BOOK_KEY, bookID)
+        .then(book=> {
+            return _addDollarPrice([book])
+            .then(books=>{
+                return(books[0])
+             })
+        })
 }
 
 function remove(bookID) {
@@ -57,56 +63,7 @@ function save(book) {
 //     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
 // }
 
-function _createBooks() {
-    let books = utilService.loadFromStorage(BOOK_KEY)
-   
-    if (!books || !books.length) {
-        books = []
 
-        books.push(
-            {
-                "id": "ABC789101",
-                "title": "To Kill a Mockingbird",
-                "description": "A classic novel by Harper Lee that explores the themes of racial injustice and moral growth in the American South.",
-                "thumbnail": "d01.jpg",
-                "listPrice": {
-                    "amount": 200,
-                    "currencyCode": "USD",
-                    "isOnSale": false
-                }
-            }
-        );
-
-        
-        books.push(
-            {
-                "id": "XYZ123456",
-                "title": "The little prince",
-                "description": " novella written and illustrated by French writer and military pilot Antoine de Saint-Exupéry",
-                "thumbnail": "d02.jpg",
-                "listPrice": {
-                "amount": 120,
-                "currencyCode": "ILS",
-                "isOnSale": true
-                }
-            })
-
-            books.push({
-                "id": "ABC987654",
-                "title": "1984",
-                "description": "A dystopian social science fiction novel and cautionary tale, written by George Orwell.",
-                "thumbnail": "d03.jpg",
-                "listPrice": {
-                    "amount": 120,
-                    "currencyCode": "GBP",
-                    "isOnSale": false
-                }
-            })
-
-
-        utilService.saveToStorage(BOOK_KEY, books)
-    }
-}
 
 function _createCar(vendor, maxSpeed = 250) {
     const car = getEmptyCar(vendor, maxSpeed)
@@ -132,4 +89,18 @@ export function _addDollarPrice(books){
             })
         }
         )
+}
+
+
+function _createBooks() {
+    let books = utilService.loadFromStorage(BOOK_KEY)
+   
+    if (!books || !books.length) {
+        const initBookArray=utilService.getBooksJsonArray()
+        books = []
+
+        initBookArray.forEach(newBook=>books.push(newBook))
+
+        utilService.saveToStorage(BOOK_KEY, books)
+    }
 }

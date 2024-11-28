@@ -18,7 +18,6 @@ export function BookIndex() {
     }
     if (!books) return <div>Loading Books...</div>
 
-    {console.log(books)}
     return (
         <section className="book-index">
             <BookList

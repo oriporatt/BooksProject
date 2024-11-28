@@ -1,9 +1,9 @@
 .book-preview {
+    display: grid;
+    grid-template-rows: auto;
     text-align: center;
     padding: 0.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-items: center;
 }
 
 .book-preview h4 {
@@ -12,5 +12,6 @@
 }
 
 .book-preview img {
-    max-width: 100px;
+    max-width: 150px;
+
 }
