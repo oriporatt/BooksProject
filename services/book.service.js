@@ -2,14 +2,14 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'bookDB'
-_createBooks()
+
 
 export const bookService = {
     query,
     get,
     remove,
     save,
-
+    getDefaultFilter,
 }
 
 // For Debug (easy access from console):
@@ -18,6 +18,13 @@ export const bookService = {
 function query(filterBy = {}) {
     
     return storageService.query(BOOK_KEY)
+        .then(books=>{
+            if (books.length===0){
+                return _createBooks()
+            }else{
+                return(books)
+            }
+        }) 
         .then(books => {
             // if (filterBy.txt) {
             //     const regExp = new RegExp(filterBy.txt, 'i')
@@ -27,11 +34,10 @@ function query(filterBy = {}) {
             //     cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
             // }
             return _addDollarPrice(books)
-            .then(books=> {
-                return books
-            })
         })
 }
+
+// bookName: '', maxPrice
 
 function get(bookID) {
     return storageService.get(BOOK_KEY, bookID)
@@ -60,10 +66,10 @@ function save(book) {
 //     return { vendor, maxSpeed }
 // }
 
-// function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
-//     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
-// }
-
+function getDefaultFilter() {
+     return { bookName: '', maxPrice: null }
+ }
+ 
 
 
 function _createCar(vendor, maxSpeed = 250) {
@@ -96,14 +102,17 @@ export function _addDollarPrice(books){
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
    
-    if (!books || !books.length) {
+    if (!books || !books.length || books.length===0) {
         const initBookArray=utilService.getBooksJsonArray()
         books = []
 
         initBookArray.forEach(newBook=>books.push(newBook))
 
         utilService.saveToStorage(BOOK_KEY, books)
+        return Promise.resolve(books)
+
     }
+
 }
 
 
