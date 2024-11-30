@@ -9,6 +9,7 @@ export const utilService = {
     animateCSS,
     getExchange,
     getBooksJsonArray,
+    
 }
 
 function makeId(length = 6) {
