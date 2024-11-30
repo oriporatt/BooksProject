@@ -1,4 +1,6 @@
 const { useState, useEffect } = React
+
+
 import { bookService } from "../services/book.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
@@ -8,10 +10,11 @@ import { BookFilter } from "../cmps/BookFilter.jsx"
 export function BookIndex() {
 
     const [books, setBooks] = useState(null)
+    const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
     useEffect(() => {
         loadBooks()
-    }, [])
+    }, [filterBy])
 
     // why didnt work?
     // useEffect(() => {
@@ -22,7 +25,7 @@ export function BookIndex() {
 
 
     function loadBooks() {
-        bookService.query()
+        bookService.query(filterBy)
             .then(setBooks)
     }
 
@@ -32,17 +35,29 @@ export function BookIndex() {
             setBooks(books.filter((book)=>book.id!=bookID))
         )
     }
-    if (!books) return <div>Loading Books...</div>
-    if (books.length===0) return <div>No books left..</div>
 
+    function onSetFilter(newFilter){
+        setFilterBy(oldFilter=>({...oldFilter,...newFilter}))
+    }
+
+
+    if (!books) return <div>Loading Books...</div>
+   
 
     return (
         <section className="book-index">
-            <BookFilter/>
-            <BookList
+            <BookFilter
+            defaultFilter={filterBy}
+            onSetFilter={onSetFilter}
+            />
+            {(books.length===0)&&<div>No books in filter</div>}
+
+            <BookList 
                 books={books} 
                 removeBook={removeBook}
             />
+
+
 
        </section>
     )

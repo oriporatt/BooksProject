@@ -26,18 +26,22 @@ function query(filterBy = {}) {
             }
         }) 
         .then(books => {
-            // if (filterBy.txt) {
-            //     const regExp = new RegExp(filterBy.txt, 'i')
-            //     books = books.filter(book => regExp.test(book.vendor))
-            // }
-            // if (filterBy.minSpeed) {
-            //     cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
-            // }
-            return _addDollarPrice(books)
+            return (_addDollarPrice(books))
         })
+        .then(books=>{
+            if (filterBy.bookName) {
+                const regExp = new RegExp(filterBy.bookName, 'i')
+                books = books.filter(book => regExp.test(book.title))
+            }
+            if (filterBy.maxPrice) {
+                
+                books = books.filter(book =>book.listPrice.dollarPrice <= filterBy.maxPrice)
+            }
+            return books
+        })
+
 }
 
-// bookName: '', maxPrice
 
 function get(bookID) {
     return storageService.get(BOOK_KEY, bookID)
@@ -67,7 +71,7 @@ function save(book) {
 // }
 
 function getDefaultFilter() {
-     return { bookName: '', maxPrice: null }
+     return { bookName: '', maxPrice: '' }
  }
  
 
