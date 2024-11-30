@@ -37,7 +37,7 @@ export function BookFilter({defaultFilter,onSetFilter}) {
                 <label htmlFor="bookName">Book Title </label>
                 <input value={bookName} onChange={handleChange} type="text" name="bookName" id="bookName"/>
                 <br></br>
-                <label htmlFor="maxPrice">Max Price </label>
+                <label htmlFor="maxPrice">Max Price ($) </label>
                 <input value={maxPrice} onChange={handleChange} type="number" name="maxPrice" id="maxPrice"/>
             </form>
         </section>
