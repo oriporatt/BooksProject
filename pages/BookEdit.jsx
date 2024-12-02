@@ -124,7 +124,7 @@ export function BookEdit() {
                     <input value={dollarPrice} onChange={handleChange} type="text" name="dollarPrice" id="dollarPrice"/>
 
                     <label htmlFor="isOnSale">Book On Sale? </label>
-                    <input value={isOnSale} onChange={handleChange} type="checkbox" name="isOnSale" id="isOnSale"/>
+                    <input value={isOnSale} onChange={handleChange} type="checkbox" name="isOnSale" id="isOnSale" checked={isOnSale}/>
                    
                 </div>
                 <button>Save</button>
