@@ -90,6 +90,7 @@ export function BookDetails() {
     return (
 
         <section className="book-details">
+            <button><Link to={`/book/edit/${params.bookId}`}>Edit Book</Link></button>
             <h2>
                 {book.title+"  "} 
                 {book.listPrice.isOnSale?<span style={{backgroundColor: "lightgreen"}}>Sale!!</span>:""}
@@ -131,9 +132,11 @@ export function BookDetails() {
             <img src={book.thumbnail} alt="book-image" />
             <br></br>
             <section>
-                <button onClick={onBack}>Back</button>
                 <button><Link to={`/book/${book.prevBookId }`}>Prev Book</Link></button>
                 <button><Link to={`/book/${book.nextBookId }`}>Next Book</Link></button>
+                <br></br>
+                <button onClick={onBack}>Back</button>
+
             </section>
         </section>
     )

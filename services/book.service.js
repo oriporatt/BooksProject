@@ -10,6 +10,7 @@ export const bookService = {
     remove,
     save,
     getDefaultFilter,
+    getEmptyBook,
 }
 
 // For Debug (easy access from console):
@@ -66,9 +67,24 @@ function save(book) {
     }
 }
 
-// function getEmptyCar(vendor = '', maxSpeed = '') {
-//     return { vendor, maxSpeed }
-// }
+function getEmptyBook() {
+   return { authors:[],
+            categories:[],
+            description:'',
+            language:'',
+            listPrice:{
+                amount:'',
+                currencyCode:'',
+                dollarPrice:'',
+                isOnSale:''
+            },
+            pageCount:'',
+            publishedDate:'',
+            subtitle:'',
+            thumbnail:'',
+            title:'',
+         }
+ }
 
 function getDefaultFilter() {
      return { bookName: '', maxPrice: '' }

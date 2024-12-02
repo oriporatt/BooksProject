@@ -9,12 +9,15 @@ export function BookEdit() {
     const {bookId}= useParams()
     const navigate = useNavigate()
     const [bookToEdit, setBookToEdit] = useState(null)
-
+    
     useEffect(()=>{
-        loadBook(bookId)
+        if (bookId){
+            loadBook(bookId)
+        }else{
+            setBookToEdit(bookService.getEmptyBook)
+        }
         },
         [])
-
     function handleChange({ target }) {
         let { value, name: field } = target
 
@@ -48,13 +51,12 @@ export function BookEdit() {
     function onSaveBook(ev){
         ev.preventDefault()
         bookService.save(bookToEdit)
-        .then(()=>{
-            if (bookId){
-                navigate(`/book/${bookId}`)
-            }
+        .then((book)=>{
+                navigate(`/book/${book.id}`)
         })
     }
 
+    console.log(bookToEdit)
     if (!bookToEdit) return <h2>Loading Book..</h2>
     const {title,subtitle,pageCount,description,language,
         publishedDate,thumbnail,authors,categories}  = bookToEdit
@@ -88,7 +90,7 @@ export function BookEdit() {
                     <input value={pageCount} onChange={handleChange} type="number" name="pageCount" id="pageCount"/>
 
                     <label htmlFor="publishedDate">Publish Year </label>
-                    <input value={publishedDate} onChange={handleChange} type="number" name="pagepublishedDateCount" id="publishedDate"/>
+                    <input value={publishedDate} onChange={handleChange} type="number" name="publishedDate" id="publishedDate"/>
 
                     <label htmlFor="language">Language </label>
                     <input value={language} onChange={handleChange} type="text" name="language" id="language"/>

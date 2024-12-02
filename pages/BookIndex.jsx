@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const {NavLink } = ReactRouterDOM
 
 
 import { bookService } from "../services/book.service.js"
@@ -50,6 +51,7 @@ export function BookIndex() {
             defaultFilter={filterBy}
             onSetFilter={onSetFilter}
             />
+            <button><NavLink to="/book/edit" className="add-button">Add Book</NavLink></button>
             {(books.length===0)&&<div>No books in filter</div>}
 
             <BookList 
