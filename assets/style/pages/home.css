@@ -1,7 +1,14 @@
 .home {
+   
+    
+}
 
+.home-center {
+    place-items: center;
 }
 
 .home img {
-    width: 100%;
+
+    max-width: 70%;
+    max-height: 70%;
 }
