@@ -2,13 +2,16 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 import { bookService } from "../services/book.service.js"
 
 
-const { useState, useEffect } = React
+const { useState, useEffect ,useRef} = React
 
 export function BookEdit() {
 
     const {bookId}= useParams()
     const navigate = useNavigate()
     const [bookToEdit, setBookToEdit] = useState(null)
+
+
+
     
     useEffect(()=>{
         if (bookId){
@@ -18,6 +21,12 @@ export function BookEdit() {
         }
         },
         [])
+
+
+
+
+    
+
     function handleChange({ target }) {
         let { value, name: field } = target
 
@@ -36,7 +45,7 @@ export function BookEdit() {
             setBookToEdit((prevBook) => ({...prevBook, [field]: value.split(',')}))
 
         }else{
-        setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+            setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
         }
     }
 
@@ -56,7 +65,7 @@ export function BookEdit() {
         })
     }
 
-    console.log(bookToEdit)
+    console.log("rendered")
     if (!bookToEdit) return <h2>Loading Book..</h2>
     const {title,subtitle,pageCount,description,language,
         publishedDate,thumbnail,authors,categories}  = bookToEdit
