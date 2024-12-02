@@ -1,0 +1,19 @@
+.book-edit{
+
+}
+
+
+
+
+.book-edit-form label {
+    display: block;
+    margin: 10px 0 0;
+}
+
+.book-edit-elementral  {
+    background-color: rgb(231, 230, 216);
+}
+
+.book-edit-list-price{
+    background-color: rgb(209, 238, 255);
+}
