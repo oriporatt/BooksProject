@@ -26,14 +26,14 @@ export function LongTxt({txt,length=100}) {
                     {/* fold: */}
                   {!extendedClick && <span>{sectionA}</span>}
                   {!extendedClick && <span 
-                    style={{color: "darkblue"}}
-                    onClick={()=>setExtended(true)}
+                        style={{color: "darkblue"}}
+                        onClick={()=>setExtended(true)}
                     >(...Read More)</span>}
                     {/* extended: */}
                     {extendedClick && <span> {txt}</span>}
                     {extendedClick && <span 
-                    style={{color: "darkgray"}}
-                    onClick={()=>setExtended(false)}
+                        style={{color: "darkgray"}}
+                        onClick={()=>setExtended(false)}
                     >(...Read Less)</span>}
                 </p>
             </section>
