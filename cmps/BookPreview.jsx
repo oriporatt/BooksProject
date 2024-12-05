@@ -2,8 +2,6 @@
 
 export function BookPreview({ book }) {
 
-
-
     return (
         <article className="book-preview">
             <div className="book-preview-data">
