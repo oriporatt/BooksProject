@@ -1,12 +1,12 @@
 const { useState} = React
 
-export function LongTxt({txt,length}) {
+export function LongTxt({txt,length=100}) {
 
     const [extendedClick,setExtended] =  useState(false)
 
     const isMoreThanMax = txt.length>length    
     const sectionA=txt.substr(0,length)
-    const sectionB= txt.substr(-length, length)
+    // const sectionB= txt.substr(-length, length)
 
     if (!isMoreThanMax) {
         return (
