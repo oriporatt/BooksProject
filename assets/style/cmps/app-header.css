@@ -17,7 +17,7 @@
     gap: 15px;
 }
 
-.app-header .active {
+.app-header-link .active {
     color: var(--secondary-1);
     font-weight: 600;
     text-decoration: underline;
