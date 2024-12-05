@@ -5,6 +5,7 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 
     gap: 10px;
+    
 }
 
 .book-list li {
@@ -12,7 +13,12 @@
     display: grid;
     justify-items: center;
     align-items: center;
-    background-color: #00253f6f;
     padding-block: 0.2em;
+    background-color: var(--primary-1);
+    border-radius: 15px;
+}
+
+
+.book-list-buttons{
 
 }

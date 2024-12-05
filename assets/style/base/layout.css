@@ -13,9 +13,11 @@
     flex-direction: column;
 }
 
+
 main.main-layout {
     flex-grow: 1;
 }
+
 
 .main-layout .full {
     grid-column: 1/-1;
