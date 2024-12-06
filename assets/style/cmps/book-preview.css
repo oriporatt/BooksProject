@@ -1,24 +1,24 @@
 .book-preview {
     display: grid;
-    grid-template-rows: auto;
     text-align: center;
-    align-items: center;
+    grid-template-rows: 1fr auto;
     justify-items: center;
-    padding: 0.5em;
     
+
 }
 
-.book-preview h4 {
+.book-preview h2 {
     text-transform: capitalize;
     color: black;
+
 }
 
 .book-preview img {
-    max-width: 150px;
-
+    max-width: 70%;
+    height: auto;
 
 }
 
 .book-preview-data{
-    text-transform: capitalize;
+    line-height: 1;
 }
