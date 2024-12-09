@@ -1,10 +1,19 @@
 .add-review{
-    background-color: var(--gray2);
+    background-color: var(--gray1);
+    max-width: 50%
 
+}
+
+@media (max-width: 800px){
+    .add-review{
+        max-width:  100%;
+        
+    }
 }
     
 .add-review-form{
     display: grid;
+    
     grid-template-columns: 1fr 1fr;
     gap: 1em;
 }

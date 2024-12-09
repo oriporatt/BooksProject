@@ -1,4 +1,13 @@
 .book-reviews{
+    background-color: var(--gray1);
+    max-width: 50%;
     overflow-y: auto;
     max-height:10rem;
+}
+
+@media (max-width: 800px){
+    .book-reviews{
+        max-width:  100%;
+        
+    }
 }
