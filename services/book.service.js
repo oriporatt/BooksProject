@@ -13,6 +13,7 @@ export const bookService = {
     getEmptyBook,
     addReview,
     removeReview,
+    addGoogleBook,
 }
 
 // For Debug (easy access from console):
@@ -139,7 +140,13 @@ export function _addDollarPrice(books){
     return utilService.getExchange().then(
         data=>{
             return books.map(book=>{
-                const exchangeRate = data[book.listPrice.currencyCode.toLowerCase()]
+                let exchangeRate = '';
+                try{
+                     exchangeRate = data[book.listPrice.currencyCode.toLowerCase()]
+                }
+                catch(error){
+                     exchangeRate=""
+                }
                 return {
                     ...book,
                     listPrice: {
@@ -182,5 +189,15 @@ function _setNextPrevBookId(book) {
         book.nextBookId = nextBook.id
         book.prevBookId = prevBook.id
         return book
+    })
+}
+
+function addGoogleBook(newItem) {
+    return query().then(books=>{
+        if (books.some(book=>book.id===newItem.id)){
+            return
+        }else{
+            return storageService.postBookWithId(BOOK_KEY, newItem)
+        }
     })
 }

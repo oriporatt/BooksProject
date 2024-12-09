@@ -54,6 +54,8 @@ export function BookIndex() {
             onSetFilter={onSetFilter}
             />
             <button><NavLink to="/book/edit" className="add-button">Add Book</NavLink></button>
+            <button><NavLink to="/book/add" className="add-button">Add Book from Google</NavLink></button>
+
             {(books.length===0)&&<div>No books in filter</div>}
 
             <BookList 
