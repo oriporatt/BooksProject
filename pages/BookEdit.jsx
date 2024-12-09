@@ -62,6 +62,7 @@ export function BookEdit() {
         bookService.save(bookToEdit)
         .then((book)=>{
                 navigate(`/book/${book.id}`)
+                showSuccessMsg('Book saved')
         })
     }
 

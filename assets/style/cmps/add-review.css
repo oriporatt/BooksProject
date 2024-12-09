@@ -1,0 +1,14 @@
+.add-review{
+    background-color: var(--gray2);
+
+}
+    
+.add-review-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+
+.add-review-form > :nth-child(7){
+    grid-column: span 2;
+}

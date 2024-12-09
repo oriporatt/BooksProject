@@ -5,6 +5,7 @@ const {NavLink } = ReactRouterDOM
 import { bookService } from "../services/book.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
+import { showErrorMsg,showSuccessMsg } from "../services/event-bus.service.js"
 
 
 
@@ -35,6 +36,7 @@ export function BookIndex() {
         .then(()=>
             setBooks(books.filter((book)=>book.id!=bookID))
         )
+        .then(showSuccessMsg('Book removed successfully'))
     }
 
     function onSetFilter(newFilter){

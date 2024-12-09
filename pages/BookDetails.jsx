@@ -3,7 +3,7 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 import { bookService } from "../services/book.service.js"
 
 import { LongTxt } from "../cmps/LongTxt.jsx"
-
+import {AddReview} from "../cmps/AddReview.jsx"
 
 export function BookDetails() {
 
@@ -138,6 +138,7 @@ export function BookDetails() {
                 <button onClick={onBack}>Back</button>
 
             </section>
+            <AddReview/>
         </section>
     )
 }
