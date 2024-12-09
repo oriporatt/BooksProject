@@ -2,11 +2,13 @@
 const { useState } = React
 
 
-export function AddReview({  }) {
-    const [review,onSetReview]=useState(null)
+export function AddReview({bookId,OnSubmitReview  }) {
+    const [review,onSetReview]=useState({})
+    
     function onAddReview(event){
         event.preventDefault()
-        console.log()
+        OnSubmitReview(bookId,review)
+        event.target.reset()
     }
 
 
@@ -24,7 +26,6 @@ export function AddReview({  }) {
         onSetReview((prevReview) => ({ ...prevReview, [field]: value }))
     }
     
-
     return (
         <section className="add-review">
             <h4>Add Book Review</h4>
@@ -32,8 +33,8 @@ export function AddReview({  }) {
                 <label htmlFor="fullName">Name </label>
                 <input  onChange={handleChange} type="text" name="fullName" id="fullName"/>
                 
-                <label htmlFor="rating">Rating </label>
-                <select name="rating" id="rating">
+                <label htmlFor="rating" >Rating </label>
+                <select name="rating" id="rating" onChange={handleChange}>
                     <option value="">Select a rating</option>
                     <option value="1">1 - Poor</option>
                     <option value="2">2 - Fair</option>
@@ -43,7 +44,7 @@ export function AddReview({  }) {
                 </select>
 
                 <label htmlFor="reviewDate">Read At </label>
-                <input type="date" name="reviewDate" id="reviewDate" />
+                <input type="date" name="reviewDate" id="reviewDate" onChange={handleChange}/>
                 <button> Add Review</button>
             </form>
         </section>

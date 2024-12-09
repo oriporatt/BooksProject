@@ -11,6 +11,8 @@ export const bookService = {
     save,
     getDefaultFilter,
     getEmptyBook,
+    addReview,
+    removeReview,
 }
 
 // For Debug (easy access from console):
@@ -55,6 +57,7 @@ function get(bookID) {
         })
 }
 
+
 function remove(bookID) {
     return storageService.remove(BOOK_KEY, bookID)
 }
@@ -90,7 +93,41 @@ function getDefaultFilter() {
      return { bookName: '', maxPrice: '' }
  }
  
+function addReview(bookId,review){
+    return get(bookId)
+    .then(oldBook=>{
+        const newReview ={id: utilService.makeId(),...review}
 
+        const newBook=
+        {...oldBook,
+            reviews:  [...oldBook.reviews||[],newReview]
+        }
+        
+        return save(newBook)
+        
+    })
+    
+    
+}
+
+
+
+function removeReview(bookId,reviewId){
+    return get(bookId)
+    .then(oldBook=>{
+        const newReview =oldBook.reviews.filter(review=>review.id!==reviewId)
+
+        const newBook=
+        {...oldBook,
+            reviews: newReview
+        }
+        
+        return save(newBook)
+        
+    })
+    
+    
+}
 
 function _createCar(vendor, maxSpeed = 250) {
     const car = getEmptyCar(vendor, maxSpeed)

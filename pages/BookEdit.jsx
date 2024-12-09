@@ -66,7 +66,6 @@ export function BookEdit() {
         })
     }
 
-    console.log("rendered")
     if (!bookToEdit) return <h2>Loading Book..</h2>
     const {title,subtitle,pageCount,description,language,
         publishedDate,thumbnail,authors,categories}  = bookToEdit

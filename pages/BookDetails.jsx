@@ -4,6 +4,8 @@ import { bookService } from "../services/book.service.js"
 
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import {AddReview} from "../cmps/AddReview.jsx"
+import {BookReviews} from "../cmps/BookReviews.jsx"
+
 
 export function BookDetails() {
 
@@ -77,6 +79,23 @@ export function BookDetails() {
         else return ""
     }
 
+    function OnSubmitReview(bookId,review){
+        return bookService.addReview(bookId,review)
+            .then((newBook)=>setBook(newBook))
+        
+    }
+
+    function OnDeleteReview(reviewId){
+        bookService.removeReview(book.id,reviewId)
+            .then(()=>
+                setBook(
+                    {
+                    ...book,
+                    reviews: book.reviews.filter(review=>review.id!==reviewId)
+                    }
+                )
+            )        
+    }
 
 
 
@@ -138,7 +157,8 @@ export function BookDetails() {
                 <button onClick={onBack}>Back</button>
 
             </section>
-            <AddReview/>
+            <BookReviews reviews={book.reviews} OnDeleteReview={OnDeleteReview}/>
+            <AddReview bookId={book.id} OnSubmitReview={OnSubmitReview}/>
         </section>
     )
 }

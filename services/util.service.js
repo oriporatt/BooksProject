@@ -121,6 +121,7 @@ export function getBooksJsonArray(){
         "currencyCode": "EUR",
         "isOnSale": false
       }
+
     },
     {
       "id": "JYOJa2NpSCq",
