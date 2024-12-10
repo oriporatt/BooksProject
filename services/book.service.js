@@ -197,7 +197,9 @@ function addGoogleBook(newItem) {
         if (books.some(book=>book.id===newItem.id)){
             return
         }else{
-            return storageService.postBookWithId(BOOK_KEY, newItem)
+            var emptyBook= getEmptyBook()
+            const combineItem={...emptyBook,...newItem}
+            return storageService.postBookWithId(BOOK_KEY, combineItem)
         }
     })
 }

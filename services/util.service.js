@@ -545,7 +545,7 @@ export function getBooksJsonArray(){
   return books
 }
 
-export function debounce(func, time = 500) {
+export function debounce(func, time = 1500) {
   var timeoutId
   return (...args) => {
       clearTimeout(timeoutId)

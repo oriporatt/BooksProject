@@ -1,0 +1,26 @@
+
+
+.google-books-list-div{
+
+}
+
+.google-book-item{
+    display: flex;
+    background-color: var(--gray1);
+    
+}
+
+.google-book-item button{
+    display: flex;
+    border-radius: 50%;   
+    background-color: white; 
+    color: black;         
+    justify-content: center;
+    align-items: center; 
+    font-size: 0.5rem;
+    border: 1px solid black;
+    width:1rem;
+    height:1rem;
+    line-height: 1rem;
+
+}

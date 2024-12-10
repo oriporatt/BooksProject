@@ -18,6 +18,7 @@
 @import "pages/book-details.css";
 @import "pages/book-edit.css";
 @import "pages/book-index.css";
+@import "pages/book-add.css";
 
 /* Components */
 @import "cmps/book-list.css";
@@ -26,3 +27,4 @@
 @import "cmps/user-msg.css";
 @import "cmps/add-review.css";
 @import "cmps/book-reviews.css";
+

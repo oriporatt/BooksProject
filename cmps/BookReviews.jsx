@@ -4,7 +4,7 @@ export function BookReviews({reviews, OnDeleteReview}) {
 
     
 
-    if (!reviews) return <p1>No reviews..</p1>
+    if (!reviews) return <p>No reviews..</p>
     
     return (
         
