@@ -4,7 +4,8 @@ export const googleBookService = {
 }
 
 function query(txt){
-    return fetch(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${txt}`)
+    const modifiedTxt= txt.replaceAll(" ","%20")
+    return fetch(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${modifiedTxt}&maxResults=5&orderBy=relevance&filter=free-ebooks&langRestrict=en`)
         .then(res=>{
             return res.json()
         })
