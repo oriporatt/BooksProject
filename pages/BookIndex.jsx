@@ -1,5 +1,5 @@
-const { useState, useEffect } = React
-const {NavLink ,useSearchParams} = ReactRouterDOM
+const { useState, useEffect,useRef } = React
+const {NavLink ,useSearchParams,useNavigate} = ReactRouterDOM
 
 
 import { bookService } from "../services/book.service.js"
@@ -8,6 +8,7 @@ import { BookFilter } from "../cmps/BookFilter.jsx"
 import { showErrorMsg,showSuccessMsg } from "../services/event-bus.service.js"
 import { utilService } from "../services/util.service.js"
 import { getTruthyValues } from "../services/util.service.js"
+import { animateCSS } from "../services/util.service.js"
 
 
 
@@ -15,13 +16,21 @@ export function BookIndex() {
     const [searchParams,setSearchParams]=useSearchParams()
     const [books, setBooks] = useState(null)
     const [filterBy, setFilterBy] = useState(bookService.filterFromSearchParams(searchParams))
+    
+    const refEl = useRef()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setSearchParams(getTruthyValues(filterBy))
         loadBooks()
     }, [filterBy])
 
-
+    function onClickAnimation(){
+        animateCSS(refEl.current,'heartBeat')
+        .then(()=>{
+                navigate("/book/edit"); // Navigate after animation
+        })
+    }
 
     function loadBooks() {
         bookService.query(filterBy)
@@ -41,6 +50,7 @@ export function BookIndex() {
     }
 
 
+
     if (!books) return <div>Loading Books...</div>
    
 
@@ -50,8 +60,14 @@ export function BookIndex() {
             defaultFilter={filterBy}
             onSetFilter={onSetFilter}
             />
-            <button><NavLink to="/book/edit" className="add-button">Add Book</NavLink></button>
-            <button><NavLink to="/book/add" className="add-button">Add Book from Google</NavLink></button>
+            {/* regular: */}
+            {/* <button ><NavLink to="/book/edit"  className="add-button">Add Book</NavLink></button> */}
+            
+            {/* with animation navigate will perform from button function*/}
+            <button ref={refEl} onClick={onClickAnimation}><span className="add-button">Add Book</span></button>
+            
+            
+            <button ><NavLink to="/book/add" className="add-button">Add Book from Google</NavLink></button>
 
             {(books.length===0)&&<div>No books in filter</div>}
 

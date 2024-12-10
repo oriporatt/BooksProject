@@ -1,5 +1,4 @@
 
-
 export function BookPreview({ book }) {
 
     return (
@@ -9,7 +8,7 @@ export function BookPreview({ book }) {
                 <h4> Price: {book.listPrice.amount} {book.listPrice.currencyCode}</h4>
                 <h5> Price $: {book.listPrice.dollarPrice}</h5>
             </div>
-            <img src={book.thumbnail} alt="book-image" />
+            <img  src={book.thumbnail} alt="book-image" />
         </article>
     )
 }

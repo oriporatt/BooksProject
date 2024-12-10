@@ -9,7 +9,8 @@
 @import "base/layout.css";
 @import "base/forms.css";
 
-
+/* Font Awesome */
+@import "../../lib/font-awesome-4.7.0/css/font-awesome.css"; 
 
 
 /* Pages */
@@ -27,4 +28,6 @@
 @import "cmps/user-msg.css";
 @import "cmps/add-review.css";
 @import "cmps/book-reviews.css";
+
+
 
