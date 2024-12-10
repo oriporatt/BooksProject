@@ -14,6 +14,7 @@ export const bookService = {
     addReview,
     removeReview,
     addGoogleBook,
+    filterFromSearchParams,
 }
 
 // For Debug (easy access from console):
@@ -202,4 +203,13 @@ function addGoogleBook(newItem) {
             return storageService.postBookWithId(BOOK_KEY, combineItem)
         }
     })
+}
+
+function filterFromSearchParams(searchParams){
+    const bookName=searchParams.get('bookName') || ''
+    const maxPrice=searchParams.get('maxPrice') || ''
+    return {
+        bookName: bookName,
+        maxPrice:maxPrice
+    }
 }

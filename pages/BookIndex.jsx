@@ -1,29 +1,26 @@
 const { useState, useEffect } = React
-const {NavLink } = ReactRouterDOM
+const {NavLink ,useSearchParams} = ReactRouterDOM
 
 
 import { bookService } from "../services/book.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
 import { showErrorMsg,showSuccessMsg } from "../services/event-bus.service.js"
+import { utilService } from "../services/util.service.js"
+import { getTruthyValues } from "../services/util.service.js"
 
 
 
 export function BookIndex() {
-
+    const [searchParams,setSearchParams]=useSearchParams()
     const [books, setBooks] = useState(null)
-    const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState(bookService.filterFromSearchParams(searchParams))
 
     useEffect(() => {
+        setSearchParams(getTruthyValues(filterBy))
         loadBooks()
     }, [filterBy])
 
-    // why didnt work?
-    // useEffect(() => {
-    //     if (books && books.length===0){
-    //         loadBooks()
-    //     }
-    // }, [books])
 
 
     function loadBooks() {
