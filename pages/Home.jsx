@@ -8,7 +8,6 @@ export function Home() {
             <div className="home-center">
                 <img src="./assets/img/home.jpg" alt="book-image" />
             </div>
-            
        </section>
     )
 }
